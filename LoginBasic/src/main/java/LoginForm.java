@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author bachtrancaominh
@@ -65,6 +64,11 @@ public class LoginForm extends javax.swing.JFrame {
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
+            }
+        });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -131,9 +135,14 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         // TODO add your handling code here:
-        String userName = txtUN.getText();
-        String password = txtPass.getPassword().toString();
+       
+    }//GEN-LAST:event_btnLoginMouseClicked
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String userName = txtUN.getText();
+        String password = new String(txtPass.getPassword());
+        System.out.println(password);;
         if (checkValidateForm()) {
             LoginController lc = new LoginController();
             try {
@@ -141,10 +150,10 @@ public class LoginForm extends javax.swing.JFrame {
                 if (result) {
                     JOptionPane.showMessageDialog(this, "Login success!");
                     txtUN.setText("");
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Fail! Some things wrong!");
-                    
+
                 }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,8 +163,7 @@ public class LoginForm extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Need more information!");
         }
-
-    }//GEN-LAST:event_btnLoginMouseClicked
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class LoginController {
 
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/user?serverTimezone=UTC";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/user";
     private static final String DATABASE_USER_NAME = "root";
     private static final String DATABASE_PASSWORD = "";
 
@@ -25,12 +25,12 @@ public class LoginController {
     public static Connection DBConnect() {
         Connection con = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DATABASE_URL, DATABASE_USER_NAME, DATABASE_PASSWORD);
-
+            System.out.println("Connect Success!");
             return con;
         } catch (Exception e) {
-            System.out.println("Fail :<");
+            System.out.println("Fail!" + e);
         }
         return null;
     }
@@ -46,7 +46,7 @@ public class LoginController {
             System.out.println("Successfull !!!");
             return true;
         } else {
-            System.out.println("Fail :<");
+            System.out.println("Fail!");
         }
         return false;
 
